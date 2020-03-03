@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../models");
+const db = require("../models"); // this isn't being used
 const path = require("path");
 
 router.get("/", function (req, res) {
