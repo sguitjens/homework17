@@ -5,11 +5,15 @@ fetch("/api/workouts/range")
     return response.json();
   })
   .then(data => {
+    console.log("DATA", data);
     populateChart(data);
   });
 
 
 API.getWorkoutsInRange()
+// .then(data => {
+//   populateChart(data);
+// });
 
   function generatePalette() {
     const arr = [

@@ -12,21 +12,27 @@ const distanceInput = document.querySelector("#distance");
 const completeButton = document.querySelector("button.complete");
 const addButton = document.querySelector("button.add-another");
 const toast = document.querySelector("#toast");
-const newWorkout = document.querySelector(".new-workout")
+const newWorkout = document.querySelector(".new-workout");
 
 let workoutType = null;
 let shouldNavigateAway = false;
 
 init();
 
-async function init() {
-  if (location.search.split("=")[1] === undefined) {
+async function init() {  // try using a try / catch block on this instead of if / else
+  if (location.search.split("=")[1] === undefined) { // if id is not defined, get the last workout
     const workout = await API.getLastWorkout();
-    if(workout) {
+    console.log("TEST GET last workout:", workout);
+    if(workout) { // if the workout exists, load it (?)
+      console.log("TEST ", "A");
       location.search = "?id=" + workout._id;
     }
-    else {
-      newWorkout.classList.add("")
+    else { // if the workout doesn't exist, add a new one, I guess
+      console.log("TEST ", "B");
+      console.log("NEW WORKOUT", newWorkout);
+      // newWorkout.classList.add(""); // error here: classList is null?
+      // newWorkout.classList.remove("new-workout");
+      API.createWorkout().then(data => console.log("CREATE A NEW WORKOUT?", data))
     }
   }
 }

@@ -1,10 +1,12 @@
 async function init() {
   const lastWorkout = await API.getLastWorkout();
-  console.log(lastWorkout);
-
-  document
-    .querySelector("a[href='/exercise?']")
-    .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
+  console.log("TEST last workout:", lastWorkout);
+  
+  if ( lastWorkout == "undefined" ) {
+    document
+      .querySelector("a[href='/exercise?']")
+      .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
+  
 
   const workoutSummary = {
     date: formatDate(lastWorkout.day),
@@ -13,7 +15,8 @@ async function init() {
     ...tallyExercises(lastWorkout.exercises)
   };
 
-  renderWorkoutSummary(workoutSummary);
+    renderWorkoutSummary(workoutSummary);
+  }
 }
 
 function tallyExercises(exercises) {
