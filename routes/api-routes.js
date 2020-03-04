@@ -23,7 +23,8 @@ router.put("/api/workouts/:id", (req, res) => {
   console.log("**** router.put('/api/workouts/:id'...");
   console.log("req.params.id", req.params.id);
   // Workout.findById(id) // is this the one?
-  Workout.find({id:req.params.id}, req.body)
+  // Workout.find({id:req.params.id}, req.body)
+  Workout.findByIdAndUpdate(req.params.id, { $push: {exercises: req.body} })
   // Workout.find({_id:req.params.id}, { $push: {exercises: req.body} }) // not sure here
   .then(data => {
     console.log("data", data);

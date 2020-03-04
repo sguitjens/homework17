@@ -2,7 +2,7 @@ async function init() {
   const lastWorkout = await API.getLastWorkout();
   console.log("TEST last workout:", lastWorkout);
   
-  if ( lastWorkout == "undefined" ) {
+  if ( lastWorkout !== "undefined" ) {
     document
       .querySelector("a[href='/exercise?']")
       .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
