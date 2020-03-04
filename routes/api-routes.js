@@ -70,7 +70,7 @@ router.post("/api/workouts", (req, res) => {
 router.get("/api/workouts/range", (req, res) => {
   console.log("*** router.get('/api/workouts/range'...");
   Workout.find({}) // this gets all of the data - how do we filter on dates? 7 days?
-  .limit(7)
+  .limit(7) // I think this is wrong, I saw it somewhere in the class chat
   .then(data => {
     console.log("LAST SEVEN DOCUMENTS", data);
     res.json(data);
